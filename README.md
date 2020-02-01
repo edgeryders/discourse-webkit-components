@@ -22,7 +22,7 @@ https://edgeryders.eu/webkit_components/topics.json
 
   This option narrows down topics to ones that have _any_ of the comma-delimited tags. This allows for more granular control of the topics which are returned.
 
-- Category
+- Categories
 
   ```
   https://edgeryders.eu/webkit_components/topics.json?categories=festival
