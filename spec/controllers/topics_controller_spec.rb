@@ -61,6 +61,13 @@ describe ::WebkitComponents::TopicsController do
       expect(event_json['confirmed']).to eq true
       expect(event_json)
     end
+
+    it "uses the default serializer if an unknown serializer is passed" do
+      get :index, params: { serializer: "wark" }, format: :json
+
+      expect(response_json.map { |topic| topic['id'] }).to include story.id
+      expect(response_json.map { |topic| topic['id'] }).to include event.id
+    end
   end
 
   def response_json

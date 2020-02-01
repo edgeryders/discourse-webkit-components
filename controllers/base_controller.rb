@@ -15,7 +15,11 @@ module WebkitComponents
     end
 
     def serializer
-      "WebkitComponents::#{params.fetch(:serializer, controller_name).humanize.singularize}Serializer".constantize
+      "WebkitComponents::#{serializer_param.humanize.singularize}Serializer".constantize
+    end
+
+    def serializer_param
+      %w(category event organizer topic user).detect { |s| s == params[:serializer] } || controller_name
     end
   end
 end
