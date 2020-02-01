@@ -21,10 +21,16 @@ describe ::WebkitComponents::UsersController do
       expect(response_json.first.keys).to include 'bio_raw'
     end
 
-    it "accepts a limit parameter" do
-      get :index, params: { limit: 5 }, format: :json
+    it "accepts a per parameter" do
+      get :index, params: { per: 5 }, format: :json
 
       expect(response_json.length).to eq 5
+    end
+
+    it "accepts a from parameter" do
+      get :index, params: { from: 8 }, format: :json
+
+      expect(response_json.length).to eq 2
     end
   end
 

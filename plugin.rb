@@ -11,6 +11,7 @@ after_initialize do
       isolate_namespace WebkitComponents
 
       [
+        "../controllers/base_controller",
         "../controllers/categories_controller",
         "../controllers/topics_controller",
         "../controllers/users_controller",
