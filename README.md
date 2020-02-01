@@ -1,6 +1,6 @@
 # Discourse plugin for webkit component endpoints
 
-This plugin exposes endpoints to act as a data source for the [Edgeryders webkit component kit](https://github.com/edgeryders/webkit-components)
+This plugin exposes endpoints to act as a data source for the [Edgeryders webkit component kit](https://github.com/edgeryders/webkit_components)
 
 ## Endpoints
 
