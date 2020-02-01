@@ -11,8 +11,10 @@ after_initialize do
       isolate_namespace WebkitComponents
 
       [
+        "../controllers/categories_controller",
         "../controllers/topics_controller",
         "../controllers/users_controller",
+        "../serializers/category_serializer",
         "../serializers/topic_serializer",
         "../serializers/organizer_serializer",
         "../serializers/event_serializer",
@@ -20,6 +22,7 @@ after_initialize do
       ].each { |path| require File.expand_path(path, __FILE__) }
 
       routes.draw do
+        resources :categories, only: :index, format: :json
         resources :topics, only: :index, format: :json
         resources :users, only: :index, format: :json
       end
