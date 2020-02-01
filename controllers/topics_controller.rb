@@ -3,13 +3,16 @@ module WebkitComponents
     private
 
     def relevant_records
-      Topic.includes(user: :user_profile)
-           .joins(:tags)
-           .yield_self { |r| relevant_tags ? r.where("tags.name": relevant_tags) : r }
+      Topic.distinct
+           .secured(guardian)
+           .includes(user: :user_profile)
+           .left_outer_joins(:tags, :category)
+           .yield_self { |r| params_for(:categories) ? r.where("categories.slug": params_for(:categories)) : r }
+           .yield_self { |r| params_for(:tags) ? r.where("tags.name": params_for(:tags)) : r }
     end
 
-    def relevant_tags
-      params[:tags].to_s.split(',').presence
+    def params_for(param)
+      params.fetch(param, '').split(',').presence
     end
   end
 end
