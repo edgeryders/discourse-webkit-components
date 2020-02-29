@@ -73,6 +73,13 @@ describe ::WebkitComponents::TopicsController do
       expect(response_json.detect { |t| t['id'] == organizer.id }['cooked']).to eq organizer.first_post.cooked
     end
 
+    it "returns the full topic body for events" do
+      event.posts << Fabricate(:post)
+      get :index, params: { serializer: "event" }, format: :json
+
+      expect(response_json.detect { |t| t['id'] == event.id }['cooked']).to eq event.first_post.cooked
+    end
+
     it "uses the default serializer if an unknown serializer is passed" do
       get :index, params: { serializer: "wark" }, format: :json
 
