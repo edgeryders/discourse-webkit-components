@@ -1,9 +1,13 @@
 module WebkitComponents
   class EventSerializer < TopicSerializer
-    attributes :event, :location, :date, :event_type, :confirmed
+    attributes :event, :location, :date, :event_type, :confirmed, :tags
 
     def location
       from_event_tag :location, length: 15
+    end
+
+    def tags
+      ActiveModel::ArraySerializer.new(object.tags, serializer: TagSerializer)
     end
 
     def date
